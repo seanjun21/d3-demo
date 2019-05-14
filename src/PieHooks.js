@@ -48,7 +48,7 @@ const Pie = props => {
         .style('font-size', 10)
         .text(d => format(d.value))
     },
-    [props.data]
+    [props.data, createPie, createArc, colors, format]
   )
 
   return (

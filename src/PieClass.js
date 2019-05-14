@@ -19,7 +19,7 @@ class PieClass extends Component {
   componentDidMount () {
     const svg = d3.select(this.ref.current)
     const data = this.createPie(this.props.data)
-    const { width, height, innerRadius, outerRadius } = this.props
+    const { width, height, outerRadius } = this.props
 
     svg
       .attr('class', 'chart')

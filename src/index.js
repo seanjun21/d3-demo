@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import * as d3 from 'd3'
-import PieClass from './PieClass'
+// import PieClass from './PieClass'
 import PieHooks from './PieHooks'
-import PieSVG from './PieSVG'
+// import PieSVG from './PieSVG'
+import BarHooks from './BarHooks'
+import LineHooks from './LineHooks'
 
 import './styles.css'
 
@@ -24,8 +26,8 @@ const App = () => {
       <div>
         <button onClick={changeData}>Transform</button>
       </div>
-      <div>
-        <span className='label'>React Class</span>
+      {/* <div>
+        <span className='label'>Pie React Class</span>
         <PieClass
           data={data}
           width={200}
@@ -33,9 +35,9 @@ const App = () => {
           innerRadius={60}
           outerRadius={100}
         />
-      </div>
+      </div> */}
       <div>
-        <span className='label'>Hooks</span>
+        <span className='label'>Pie Hooks</span>
         <PieHooks
           data={data}
           width={200}
@@ -44,14 +46,30 @@ const App = () => {
           outerRadius={100}
         />
       </div>
-      <div>
-        <span className='label'>SVG Elements</span>
+      {/* <div>
+        <span className='label'>Pie SVG Elements</span>
         <PieSVG
           data={data}
           width={200}
           height={200}
           innerRadius={60}
           outerRadius={100}
+        />
+      </div> */}
+      <div>
+        <span className='label'>Bar Hooks</span>
+        <BarHooks
+          data={data}
+          width={200}
+          height={200}
+        />
+      </div>
+      <div>
+        <span className='label'>Line Hooks</span>
+        <LineHooks
+          data={data}
+          width={200}
+          height={200}
         />
       </div>
     </div>
