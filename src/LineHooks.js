@@ -34,19 +34,18 @@ const Line = props => {
         .x(d => x(d.date))
         .y(d => y(d.value))
 
-      const svg = d3.select(ref.current)
-      svg.append('g')
-        .call(xAxis)
+      const group = d3.select(ref.current)
+      const groupWithData = group.selectAll('g.line').remove().exit().data(props.data)
 
-      svg.append('g')
-        .call(yAxis)
+      groupWithData.exit().remove()
 
-      // const svgWithData = svg.selectAll('g').remove().exit().data(props.data)
+      const groupWithUpdate = groupWithData
+        .enter()
+        .append('g')
+        .attr('class', 'line')
 
-      // const svgWithUpdate = svgWithData
-      //   .enter()
-
-      svg.append('path')
+      groupWithUpdate.append('path')
+        .merge(groupWithData.select('path'))
         .datum(props.data)
         .attr('fill', 'none')
         .attr('stroke', 'steelblue')
@@ -54,12 +53,22 @@ const Line = props => {
         .attr('stroke-linejoin', 'round')
         .attr('stroke-linecap', 'round')
         .attr('d', line)
+
+      groupWithUpdate.append('g')
+        .merge(groupWithData.select('g'))
+        .call(xAxis)
+
+      groupWithUpdate.append('g')
+        .merge(groupWithData.select())
+        .call(yAxis)
     },
     [props.width, props.data, margin.bottom, margin.left, props.height, x, y]
   )
 
   return (
-    <svg width={props.width} height={props.height} ref={ref} />
+    <svg width={props.width} height={props.height} >
+      <g ref={ref} />
+    </svg>
   )
 }
 
